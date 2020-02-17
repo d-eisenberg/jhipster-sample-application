@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span>Week Orders</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-week-order" [routerLink]="['/week-order/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Week Order
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="weekOrders?.length === 0">
+        <span>No weekOrders found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="weekOrders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Weeknum</span></th>
+                    <th scope="col" ><span>Daynum</span></th>
+                    <th scope="col" ><span>User Id</span></th>
+                    <th scope="col" ><span>User Order</span></th>
+                    <th scope="col" ><span>User Id</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let weekOrder of weekOrders ;trackBy: trackId">
+                    <td><a [routerLink]="['/week-order', weekOrder.id, 'view']">{{ weekOrder.id }}</a></td>
+                    <td>{{ weekOrder.weeknum }}</td>
+                    <td>{{ weekOrder.daynum }}</td>
+                    <td>{{ weekOrder.userId }}</td>
+                    <td>
+                        <a *ngIf="weekOrder.userOrder" (click)="openFile(weekOrder.userOrderContentType, weekOrder.userOrder)">open</a>
+                        <span *ngIf="weekOrder.userOrder">{{ weekOrder.userOrderContentType }}, {{ byteSize(weekOrder.userOrder) }}</span>
+                    </td>
+                    <td>
+                        <div *ngIf="weekOrder.userId">
+                            <a [routerLink]="['/users', weekOrder.userId?.id, 'view']" >{{ weekOrder.userId?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/week-order', weekOrder.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/week-order', weekOrder.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(weekOrder)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

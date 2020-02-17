@@ -1,0 +1,41 @@
+{
+    "name": "WeekOrder",
+    "fields": [
+        {
+            "fieldName": "weeknum",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "daynum",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "userId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "userOrder",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "users",
+            "otherEntityRelationshipName": "weekOrder",
+            "relationshipName": "userId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200217205300",
+    "entityTableName": "week_order",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "WeekManu",
+    "fields": [
+        {
+            "fieldName": "menu",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200217205200",
+    "entityTableName": "week_manu",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
