@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="weekOrder">
+            <h2><span>Week Order</span> {{ weekOrder.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Weeknum</span></dt>
+                <dd>
+                    <span>{{ weekOrder.weeknum }}</span>
+                </dd>
+                <dt><span>Daynum</span></dt>
+                <dd>
+                    <span>{{ weekOrder.daynum }}</span>
+                </dd>
+                <dt><span>User Id</span></dt>
+                <dd>
+                    <span>{{ weekOrder.userId }}</span>
+                </dd>
+                <dt><span>User Order</span></dt>
+                <dd>
+                    <div *ngIf="weekOrder.userOrder">
+                        <a (click)="openFile(weekOrder.userOrderContentType!, weekOrder.userOrder)">open</a>
+                        {{ weekOrder.userOrderContentType }}, {{ byteSize(weekOrder.userOrder) }}
+                    </div>
+                </dd>
+                <dt><span>User Id</span></dt>
+                <dd>
+                    <div *ngIf="weekOrder.userId">
+                        <a [routerLink]="['/users', weekOrder.userId?.id, 'view']">{{ weekOrder.userId?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/week-order', weekOrder.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

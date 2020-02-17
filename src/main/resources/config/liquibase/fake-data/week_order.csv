@@ -1,0 +1,11 @@
+id;weeknum;daynum;user_id;user_order;user_order_content_type
+1;23011;92457;97287;../fake-data/blob/hipster.png;image/png
+2;23761;88649;10301;../fake-data/blob/hipster.png;image/png
+3;87189;68944;817;../fake-data/blob/hipster.png;image/png
+4;71063;44584;90307;../fake-data/blob/hipster.png;image/png
+5;34952;84259;50896;../fake-data/blob/hipster.png;image/png
+6;57004;71346;7340;../fake-data/blob/hipster.png;image/png
+7;9122;44629;58436;../fake-data/blob/hipster.png;image/png
+8;73350;44635;29666;../fake-data/blob/hipster.png;image/png
+9;75485;30854;62416;../fake-data/blob/hipster.png;image/png
+10;25003;54733;99519;../fake-data/blob/hipster.png;image/png

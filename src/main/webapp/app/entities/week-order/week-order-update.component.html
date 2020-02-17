@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-week-order-heading">Create or edit a Week Order</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_weeknum">Weeknum</label>
+                    <input type="number" class="form-control" name="weeknum" id="field_weeknum"
+                           formControlName="weeknum"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_daynum">Daynum</label>
+                    <input type="number" class="form-control" name="daynum" id="field_daynum"
+                           formControlName="daynum"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_userId">User Id</label>
+                    <input type="number" class="form-control" name="userId" id="field_userId"
+                           formControlName="userId"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_userOrder">User Order</label>
+                    <div>
+                        <div *ngIf="editForm.get('userOrder')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('userOrderContentType')!.value, editForm.get('userOrder')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('userOrderContentType')!.value }}, {{ byteSize(editForm.get('userOrder')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({userOrder: null});editForm.patchValue({userOrderContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_userOrder" (change)="setFileData($event, 'userOrder', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="userOrder" id="field_userOrder"
+                           formControlName="userOrder"/>
+                    <input type="hidden" class="form-control" name="userOrderContentType" id="field_userOrderContentType"
+                           formControlName="userOrderContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_userId">User Id</label>
+                    <select class="form-control" id="field_userId" name="userId" formControlName="userId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="usersOption.id === editForm.get('userId')!.value?.id ? editForm.get('userId')!.value : usersOption" *ngFor="let usersOption of users; trackBy: trackById">{{ usersOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

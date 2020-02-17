@@ -1,0 +1,28 @@
+entity Users {
+	id Integer,
+	login String,
+    password String
+}
+
+entity WeekManu {
+	menu Blob,
+}
+
+entity WeekOrder {
+	weeknum Integer,
+    daynum Integer,
+    userId Integer,
+    userOrder Blob
+}
+
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToOne {
+	WeekOrder{userId} to Users,
+}
+
+
+
+service all with serviceImpl 

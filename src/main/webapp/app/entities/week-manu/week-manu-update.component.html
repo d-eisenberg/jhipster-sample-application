@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-week-manu-heading">Create or edit a Week Manu</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_menu">Menu</label>
+                    <div>
+                        <div *ngIf="editForm.get('menu')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('menuContentType')!.value, editForm.get('menu')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('menuContentType')!.value }}, {{ byteSize(editForm.get('menu')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({menu: null});editForm.patchValue({menuContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_menu" (change)="setFileData($event, 'menu', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="menu" id="field_menu"
+                           formControlName="menu"/>
+                    <input type="hidden" class="form-control" name="menuContentType" id="field_menuContentType"
+                           formControlName="menuContentType" />
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
